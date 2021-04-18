@@ -18,5 +18,18 @@ namespace WorkoutTrackerApi.Contracts.V1
 
             public const string Refresh = Base + "/identity/refresh";
         }
+
+        public static class Workout
+        {
+            public const string GetAll = Base + "/workouts";
+
+            public const string Get = Base + "/workouts/{id}";
+
+            public const string Create = Base + "/workouts";
+
+            public const string Update = Base + "/workouts/{id}";
+
+            public const string Delete = Base + "/workouts/{id}";
+        }
     }
 }

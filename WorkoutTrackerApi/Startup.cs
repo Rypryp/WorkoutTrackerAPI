@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,6 +39,8 @@ namespace WorkoutTrackerApi
             services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<DataContext>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(JwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
@@ -67,6 +70,7 @@ namespace WorkoutTrackerApi
             });
 
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IWorkoutService, WorkoutService>();
 
             services.AddControllers();
 

@@ -28,5 +28,8 @@
     <Folder Include="Contracts\" />
     <Folder Include="Contracts\V1\" />
     <Folder Include="Contracts\V1\Identity\" />
+    <Folder Include="Models\Workout\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Contracts\V1\Workout\" />
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace WorkoutTrackerApi.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<CreateWorkoutRequest, Workout>();
+            //CreateMap<CreateWorkoutRequest, Workout>();
         }
     }
 }

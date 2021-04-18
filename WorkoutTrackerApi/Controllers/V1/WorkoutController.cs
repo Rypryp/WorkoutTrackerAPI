@@ -21,12 +21,10 @@ namespace WorkoutTrackerApi.Controllers.V1
     public class WorkoutController : ControllerBase
     {
         private readonly IWorkoutService _workoutService;
-        private readonly IMapper _mapper;
 
-        public WorkoutController(IWorkoutService workoutService, IMapper mapper)
+        public WorkoutController(IWorkoutService workoutService)
         {
             _workoutService = workoutService;
-            _mapper = mapper;
         }
 
         [HttpGet(ApiRoutes.Workout.GetAll)]
@@ -71,7 +69,7 @@ namespace WorkoutTrackerApi.Controllers.V1
         }
 
         [HttpPut(ApiRoutes.Workout.Update)]
-        public async Task<IActionResult> Put(string id, [FromBody] UpdateWorkoutRequest request)
+        public async Task<IActionResult> Put(string id, [FromBody] Workout request)
         {
             var userOwnsWorkout = await _workoutService.UserOwnsWorkoutAsync(id, HttpContext.GetUserId());
 
@@ -80,9 +78,7 @@ namespace WorkoutTrackerApi.Controllers.V1
                 return BadRequest(new { error = "User does not own this workout" });
             }
 
-            var workout = _mapper.Map<UpdateWorkoutRequest, Workout>(request);
-
-            var updated = await _workoutService.UpdateWorkoutAsync(workout);
+            var updated = await _workoutService.UpdateWorkoutAsync(request);
 
             if (!updated)
             {
